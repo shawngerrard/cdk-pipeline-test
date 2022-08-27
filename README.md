@@ -24,6 +24,14 @@ To do this, we will need to install the [Node Package Manager](https://www.npmjs
 We will also need to install the latest version of [typescript](https://www.typescriptlang.org/):
 `npm -g install typescript`
 
+## Install aws cdk
+
+To install the `aws-cdk`, we will use the following command (note that this uses the `global` setting and may require `sudo` priviledges):
+`npm install aws-cdk`
+
+You can verify installation with the following command:
+`cdk --version`
+
 ## Install aws cdk libraries
 
 The aws cdk contains language-specific libraries (aws construct library) that organize aws constructs into various modules.
@@ -31,12 +39,13 @@ The aws cdk contains language-specific libraries (aws construct library) that or
 As we'll be utilizing `typescript` to interact with aws cdk, we'll need to install the `aws-cdk-lib` using the node package manager:
 `npm install aws-cdk-lib`
 
-You can verify installation with the following command:
-`cdk --version`
+> **Please note:** I recommend _not_ to push up changes to a remote repository until you've configured `.gitignore` to ignore runtime files - for instance, the `node_modules` folder.
 
 ## Bootstrap the aws cdk
 
 To use aws cdk we must first bootstrap the cdk app so that required amazon s3 buckets and compute containers can be made available to aws cloudformation during cdk deployment.
 
-We can bootstrap using the following command:
-`cdk bootstrap aws://ACCOUNT-NUMBER/REGION`
+As long as you have an aws configuration profile named 'personal' (update the command below if this name differs), we can bootstrap using the following command:
+`cdk bootstrap aws://$(aws sts get-caller-identity --o text --query 'Account')/$(aws configure get region --profile personal)`
+
+> **TODO**: Insert a section here describing how to create custom aws lambda execution roles/policies and avoid use of default AdministratorAccess role.
