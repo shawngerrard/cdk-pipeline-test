@@ -32,14 +32,14 @@ To install the `aws-cdk`, we will use the following command (note that this uses
 You can verify installation with the following command:
 `cdk --version`
 
+> **Please note:** Before continuing with the next steps, I recommend configuring a `.gitignore` file to ignore runtime files and pushing this up to your code repository - for instance, exclude the `node_modules` folder that will be created in the next step.
+
 ## Install aws cdk libraries
 
 The aws cdk contains language-specific libraries (aws construct library) that organize aws constructs into various modules.
 
 As we'll be utilizing `typescript` to interact with aws cdk, we'll need to install the `aws-cdk-lib` using the node package manager:
 `npm install aws-cdk-lib`
-
-> **Please note:** I recommend _not_ to push up changes to a remote repository until you've configured `.gitignore` to ignore runtime files - for instance, the `node_modules` folder.
 
 ## Bootstrap the aws cdk
 
