@@ -6,6 +6,10 @@ Implementing pipelines in github actions to test aws cdk iac and aws resource de
 
 To use this repository, you must complete the following steps to set up a local aws development environment that utilizes aws cdk.
 
+# Install developmental tools
+
+This section will walk you through installing the package managers, sdks, and developmental tools you'll need to run aws cdk.
+
 ## Install aws cli
 
 You'll need [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed as aws cdk uses aws cli to perform the api calls to the amazon resource model.
@@ -48,4 +52,16 @@ To use aws cdk we must first bootstrap the cdk app so that required amazon s3 bu
 As long as you have an aws configuration profile named 'personal' (update the command below if this name differs), we can bootstrap using the following command:
 `cdk bootstrap aws://$(aws sts get-caller-identity --o text --query 'Account')/$(aws configure get region --profile personal)`
 
-> **TODO**: Insert a section here describing how to create custom aws lambda execution roles/policies and avoid use of default AdministratorAccess role.
+> **TODO**: Insert a section here describing how to create custom aws lambda execution roles/policies to avoid use of default AdministratorAccess role.
+
+# Creating a new project
+
+Now that you have the necessary aws cdk programs installed and configured, we can set up our first application development project.
+
+## Initialize the project
+
+You must create an empty sub-folder to hold your application projects: `mkdir <project-name>`.
+
+Within the folder, run the following command to scaffold in the cdk development folder/file structures and module files required to build, test, and deploy cdk apps in `typescript`:
+
+`cdk init app --language typescript`
